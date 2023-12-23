@@ -2,7 +2,6 @@ package com.example.howIsIt.base;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.PrePersist;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -19,6 +18,6 @@ public abstract class BaseTimeEntity {
     private LocalDateTime createDateTime;
 
     @LastModifiedDate
-    private LocalDateTime LastDateTime;
+    private LocalDateTime lastDateTime;
 
 }

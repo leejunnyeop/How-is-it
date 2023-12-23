@@ -1,6 +1,6 @@
 package com.example.howIsIt.mentos.domain.dto;
 
-import com.example.howIsIt.mentos.domain.entity.Mentor;
+import com.example.howIsIt.mentos.domain.entity.MentorProfile;
 import lombok.Getter;
 
 @Getter
@@ -10,16 +10,21 @@ public class MentorDto {
 
     private String content;
 
-    private float rankCount;
+    private String thumbnail;
 
-    private Integer reviewCount;
+    private String expertise;
 
-    public Mentor mentorEntity(MentorDto mentorDto){
-        return Mentor.builder()
+    private String price;
+
+
+
+    public MentorProfile mentorEntity(MentorDto mentorDto){
+        return MentorProfile.builder()
                 .title(mentorDto.title)
                 .content(mentorDto.content)
-                .rankCount(mentorDto.rankCount)
-                .reviewCount(mentorDto.reviewCount)
+                .thumbnail(mentorDto.thumbnail)
+                .expertise(mentorDto.expertise)
+                .price(mentorDto.price)
                 .build();
     }
 
