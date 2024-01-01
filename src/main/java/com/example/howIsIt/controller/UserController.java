@@ -30,7 +30,7 @@ public class UserController {
 
         try {
             email = customUser.getEmail();
-            uid = customUser.getId();
+            uid = customUser.getId(); 
         } catch (IllegalArgumentException e) {
             return new BaseResponse(false, "권한이 없는 유저의 접근입니다.", 4004);
         }
