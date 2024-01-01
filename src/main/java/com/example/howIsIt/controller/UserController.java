@@ -1,7 +1,7 @@
 package com.example.howIsIt.controller;
 
 import com.example.howIsIt.base.BaseResponse;
-import com.example.howIsIt.dto.response.UserInfo;
+import com.example.howIsIt.domain.CustomUser;
 import com.example.howIsIt.service.CustomUserService;
 import com.google.firebase.auth.FirebaseAuth;
 import lombok.RequiredArgsConstructor;
@@ -24,13 +24,13 @@ public class UserController {
     private CustomUserService customUserDetailsService;
 
     @PostMapping("")
-    public BaseResponse register (@RequestBody UserInfo userInfo) {
+    public BaseResponse register (@RequestBody CustomUser customUser) {
 
         String email = ""; String uid = "";
 
         try {
-            email = userInfo.getEmail();
-            uid = userInfo.getUid();
+            email = customUser.getEmail();
+            uid = customUser.getId();
         } catch (IllegalArgumentException e) {
             return new BaseResponse(false, "권한이 없는 유저의 접근입니다.", 4004);
         }

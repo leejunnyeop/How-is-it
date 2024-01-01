@@ -1,31 +1,22 @@
 package com.example.howIsIt.service;
 
-import com.example.howIsIt.domain.base.CustomUser;
+import com.example.howIsIt.domain.CustomUser;
 import com.example.howIsIt.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class CustomUserService implements UserDetailsService {
+public class CustomUserService {
     @Autowired
     UserRepository userRepository;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findById(username).get();
-    }
-
     @Transactional
     public CustomUser register(String uid, String email) {
-        CustomUser customUser = CustomUser.builder()
-                .username(uid)
-                .email(email)
-                .build();
-        userRepository.save(customUser);
-        return customUser;
+        CustomUser user = new CustomUser();
+        user.setId(uid);
+        user.setEmail(email);
+        userRepository.save(user);
+        return user;
     }
 }
