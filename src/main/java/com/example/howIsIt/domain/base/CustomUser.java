@@ -17,15 +17,15 @@ public class CustomUser implements UserDetails {
     private String username;
     @Column
     private String email;
-    @Column
-    private String nickname;
 
     public CustomUser() {
         // 기본 생성자 내용 (필요에 따라)
     }
 
     @Builder
-    public CustomUser(String username, String email, String nickname) {
+    public CustomUser(String username, String email) {
+        this.email = email;
+        this.username = username;
     }
 
 

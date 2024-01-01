@@ -20,11 +20,10 @@ public class CustomUserService implements UserDetailsService {
     }
 
     @Transactional
-    public CustomUser register(String uid, String email, String nickname) {
+    public CustomUser register(String uid, String email) {
         CustomUser customUser = CustomUser.builder()
                 .username(uid)
                 .email(email)
-                .nickname(nickname)
                 .build();
         userRepository.save(customUser);
         return customUser;

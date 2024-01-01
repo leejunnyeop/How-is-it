@@ -6,7 +6,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -34,10 +34,9 @@ public class SecurityConfig {
                 // 요청에 대한 권한을 설정합니다.
                 .authorizeRequests(authorize -> authorize
                         // '/users' 경로에 대해 POST 요청은 인증 없이 허용합니다.
-                        .requestMatchers(HttpMethod.POST, "/users").permitAll()
-                        // 루트 경로와 '/resources/**' 경로에 대한 모든 요청은 인증 없이 허용합니다.
-                        .requestMatchers("/").permitAll()
-                        .requestMatchers("/resources/**").permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/users", "POST")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/resources/**")).permitAll()
                         // 그 외의 모든 요청은 인증이 필요합니다.
                         .anyRequest().authenticated()
                 )

@@ -1,23 +1,27 @@
 package com.example.howIsIt.config;
 
-import java.io.IOException;
-
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.io.FileInputStream;
+import java.io.IOException;
 
 @Configuration
 public class FirebaseConfig {
     @Bean
     public FirebaseAuth firebaseAuth() throws IOException {
+        GoogleCredentials credentials = GoogleCredentials
+                .fromStream(new FileInputStream("portfolier-itstime-firebase-adminsdk-ojcc7-8d1c6d15b1.json"));
         FirebaseOptions options = FirebaseOptions.builder()
-                .setCredentials(GoogleCredentials.getApplicationDefault())
+                .setCredentials(credentials)
                 .build();
-        FirebaseApp.initializeApp(options);
-        return FirebaseAuth.getInstance(FirebaseApp.getInstance());
+        if (FirebaseApp.getApps().isEmpty()) { // <== FirebaseApp이 이미 초기화되었는지 확인
+            FirebaseApp.initializeApp(options);
+        }
+        return FirebaseAuth.getInstance();
     }
 }

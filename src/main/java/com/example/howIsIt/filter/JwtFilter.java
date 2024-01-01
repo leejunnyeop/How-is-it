@@ -34,6 +34,14 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         // get the token from the request
+        String requestURI = request.getRequestURI();
+
+        // '/users' 경로의 POST 요청은 인증을 건너뛴다.
+        if (requestURI.equals("/users") && request.getMethod().equals("POST")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         FirebaseToken decodedToken;
         try{
             String header = RequestUtil.getAuthorizationToken(request.getHeader("Authorization"));
