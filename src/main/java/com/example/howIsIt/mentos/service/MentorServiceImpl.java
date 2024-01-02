@@ -21,37 +21,50 @@ public class MentorServiceImpl implements MentorService {
 
     private final MentorRepository mentorRepository;
 
-    @Override
-    public MentorProfile mentorProfileId(Long id){
+    public MentorProfile existingMentorProfileId(Long id){
         return mentorRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundException("없는 멘토 입니다"));
     }
 
+
+    public MentorDto convertToDto(MentorProfile mentorProfile){
+        return new MentorDto(mentorProfile.getTitle(),
+                mentorProfile.getContent(), mentorProfile.getThumbnail(),
+                mentorProfile.getExpertise(), mentorProfile.getPrice());
+    }
+
+    public MentorUpdateDto updateConvertToDto(MentorProfile mentorProfile){
+        return new MentorUpdateDto(mentorProfile.getTitle(),
+                mentorProfile.getContent(), mentorProfile.getThumbnail(),
+                mentorProfile.getExpertise(), mentorProfile.getPrice());
+    }
+
     @Override
-    public MentorProfile createMentorProfile(MentorDto mentorDto) {
+    public MentorDto createMentorProfile(MentorDto mentorDto) {
         log.info("createMentorProfile : 메소드 실행");
        MentorProfile mentorProfileSave = mentorDto.mentorEntity(mentorDto);
        log.info("mentorProfileSave 저장됨");
        MentorProfile mentorProfileCreateSave = mentorRepository.save(mentorProfileSave);
-       return mentorProfileCreateSave;
+        return convertToDto(mentorProfileCreateSave);
+
 
     }
 
     @Override
-    public MentorProfile infoMentorProfile(Long id) {
+    public MentorDto infoMentorProfile(Long id) {
         log.info("조회 메소드 실행");
-        MentorProfile infoMentorProfile = mentorProfileId(id);
+        MentorProfile infoMentorProfile = existingMentorProfileId(id);
         log.info("조회 완료");
-        return infoMentorProfile;
+        return convertToDto(infoMentorProfile);
 
     }
 
     @Override
-    public MentorProfile updateMentorProfile(Long id, MentorUpdateDto mentorUpdateDto) {
-        MentorProfile existingProfile = mentorProfileId(id);
+    public MentorUpdateDto updateMentorProfile(Long id, MentorUpdateDto mentorUpdateDto) {
+        MentorProfile existingProfile = existingMentorProfileId(id);
         existingProfile.updateProfileFrom(mentorUpdateDto);
         MentorProfile save = mentorRepository.save(existingProfile);
-        return save;
+        return updateConvertToDto(save);
 
     }
 

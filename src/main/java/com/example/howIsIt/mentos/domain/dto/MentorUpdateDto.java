@@ -1,9 +1,11 @@
 package com.example.howIsIt.mentos.domain.dto;
 
 import com.example.howIsIt.mentos.domain.entity.MentorProfile;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public class MentorUpdateDto {
 
 
@@ -16,6 +18,8 @@ public class MentorUpdateDto {
     private String expertise;
 
     private String price;
+
+
 
 
 }
