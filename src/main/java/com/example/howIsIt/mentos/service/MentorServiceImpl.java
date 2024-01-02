@@ -41,9 +41,7 @@ public class MentorServiceImpl implements MentorService {
 
     @Override
     public MentorDto createMentorProfile(MentorDto mentorDto) {
-        log.info("createMentorProfile : 메소드 실행");
        MentorProfile mentorProfileSave = mentorDto.mentorEntity(mentorDto);
-       log.info("mentorProfileSave 저장됨");
        MentorProfile mentorProfileCreateSave = mentorRepository.save(mentorProfileSave);
         return convertToDto(mentorProfileCreateSave);
 
@@ -52,9 +50,7 @@ public class MentorServiceImpl implements MentorService {
 
     @Override
     public MentorDto infoMentorProfile(Long id) {
-        log.info("조회 메소드 실행");
         MentorProfile infoMentorProfile = existingMentorProfileId(id);
-        log.info("조회 완료");
         return convertToDto(infoMentorProfile);
 
     }

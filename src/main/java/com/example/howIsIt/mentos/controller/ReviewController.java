@@ -19,9 +19,6 @@ public class ReviewController {
 
     @PostMapping("/crate")
     public ResponseEntity<ReviewDto> createReview(@RequestBody ReviewDto reviewDto){
-        log.info("리뷰 시작 합니다");
-        log.info("ReviewDto memberId " + reviewDto.getMemberId());
-        log.info("ReviewDto profileId " + reviewDto.getMentorProfileId());
         reviewService.createReview(reviewDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

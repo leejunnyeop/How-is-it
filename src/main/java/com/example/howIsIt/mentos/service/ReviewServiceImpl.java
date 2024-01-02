@@ -41,11 +41,8 @@ public class ReviewServiceImpl implements ReviewService {
     public void createReview(ReviewDto reviewDto) {
 
         // 회원 및 프로필 존재 여부 확인
-        log.info("리뷰 메소드 실행 합니다");
         Member existingMember = existingMemberId(reviewDto.getMemberId());
-        log.info("memberID " + existingMember);
         MentorProfile existingProfile = existingProfileId(reviewDto.getMentorProfileId());
-        log.info("profileId " + existingProfile);
 
         // 중복 방지
         if(reviewRepository.findByMentorProfileAndMemberId(existingProfile.getId(),existingMember.getId()).isPresent()){
@@ -60,7 +57,7 @@ public class ReviewServiceImpl implements ReviewService {
                 .review(reviewDto.getReview())
                 .build();
 
-        log.info("내가 봣을땐 이거야 " + mentorProfileReviewEntity.getMemberId());
+        //db 저장
         reviewRepository.save(mentorProfileReviewEntity);
     }
 

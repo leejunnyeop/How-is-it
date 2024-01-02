@@ -22,17 +22,13 @@ public class MentorProfileController {
 
     @PostMapping("/create")
     public ResponseEntity<MentorDto> createProfile(@RequestBody @Valid MentorDto mentorDto){
-        log.info("데이터 들어 옴");
         MentorDto mentorProfile = mentorService.createMentorProfile(mentorDto);
-        log.info("저장됨");
         return new ResponseEntity<>(mentorProfile,HttpStatus.CREATED);
     }
 
     @GetMapping("/info/{id}")
     public ResponseEntity<MentorDto> InfoMentorProfile(@PathVariable Long id){
-        log.info("조회중 입니다");
         MentorDto infoMentorProfile = mentorService.infoMentorProfile(id);
-
         return new ResponseEntity<>(infoMentorProfile,HttpStatus.OK);
     }
 
