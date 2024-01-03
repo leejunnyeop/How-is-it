@@ -13,6 +13,17 @@ spring:
       ddl-auto: update
       dialect: org.hibernate.dialect.H2Dialect
     show-sql: true
+  config:
+    import: file:./application-secret.yml
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 
 

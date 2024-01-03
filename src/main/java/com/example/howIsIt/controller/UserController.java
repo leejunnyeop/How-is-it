@@ -23,14 +23,14 @@ public class UserController {
     @Autowired
     private CustomUserService customUserDetailsService;
 
-    @PostMapping("")
+    @PostMapping("") //구글소셜로그인
     public BaseResponse register (@RequestBody CustomUser customUser) {
 
         String email = ""; String uid = "";
 
         try {
             email = customUser.getEmail();
-            uid = customUser.getId(); 
+            uid = customUser.getId();
         } catch (IllegalArgumentException e) {
             return new BaseResponse(false, "권한이 없는 유저의 접근입니다.", 4004);
         }
@@ -40,9 +40,4 @@ public class UserController {
         return new BaseResponse(true, "요청에 성공하였습니다.", 2000);
     }
 
-//    @GetMapping("/me")
-//    public UserInfo  getUserMe(Authentication authentication) {
-//        CustomUser customUser = ((CustomUser) authentication.getPrincipal());
-//        return new UserInfo(customUser);
-//    }
 }
