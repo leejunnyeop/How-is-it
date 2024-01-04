@@ -15,7 +15,7 @@ public class FirebaseConfig {
     @Bean
     public FirebaseAuth firebaseAuth() throws IOException {
         GoogleCredentials credentials = GoogleCredentials
-                .fromStream(new FileInputStream("portfolier-itstime-firebase-adminsdk-ojcc7-8d1c6d15b1.json"));
+                .fromStream(new FileInputStream("portfolier-itstime-firebase-adminsdk-ojcc7-0872e42441.json"));
         FirebaseOptions options = FirebaseOptions.builder()
                 .setCredentials(credentials)
                 .build();
