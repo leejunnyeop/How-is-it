@@ -1,5 +1,6 @@
 package com.example.howIsIt.domain;
 
+import com.example.howIsIt.mentos.domain.entity.MentorLikes;
 import com.example.howIsIt.mentos.domain.entity.MentorProfileReview;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,8 +25,10 @@ public class Member {
 
     private String password;
 
-    @OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MentorProfileReview> mentorProfileReviews;
 
+    @OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MentorLikes> mentorLikes;
 
 }

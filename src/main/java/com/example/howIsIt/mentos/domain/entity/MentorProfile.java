@@ -37,8 +37,12 @@ public class MentorProfile extends BaseTimeEntity {
     @Column(nullable = false)
     private String price;
 
-    @OneToMany(mappedBy = "mentorProfileId", cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @OneToMany(mappedBy = "mentorProfile", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MentorProfileReview> mentorProfileReview;
+
+    @OneToMany(mappedBy = "mentorProfileId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MentorLikes> mentorLikes;
 
 
 

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/mentor")
 @RequiredArgsConstructor
-@Slf4j
 public class MentorProfileController {
 
     private final MentorServiceImpl mentorService;

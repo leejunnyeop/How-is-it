@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"mentorProfile_id", "user_id"})
+        @UniqueConstraint(columnNames = {"mentorProfile_id", "member_id"})
 })
 public class MentorProfileReview extends BaseTimeEntity {
 
@@ -26,11 +26,11 @@ public class MentorProfileReview extends BaseTimeEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mentorProfile_id", nullable = false)
-    private MentorProfile mentorProfileId;
+    private MentorProfile mentorProfile;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private Member memberId;
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
 
     @Column(length = 20)
     private String review;

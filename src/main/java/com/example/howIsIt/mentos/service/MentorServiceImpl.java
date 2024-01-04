@@ -1,5 +1,6 @@
 package com.example.howIsIt.mentos.service;
 
+import com.example.howIsIt.base.utility.EntityFinder;
 import com.example.howIsIt.mentos.domain.dto.MentorDto;
 import com.example.howIsIt.mentos.domain.dto.MentorUpdateDto;
 import com.example.howIsIt.mentos.domain.entity.MentorProfile;
@@ -8,10 +9,11 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class MentorServiceImpl implements MentorService {
 
 
@@ -20,11 +22,8 @@ public class MentorServiceImpl implements MentorService {
      */
 
     private final MentorRepository mentorRepository;
+    private final EntityFinder entityFinder;
 
-    public MentorProfile existingMentorProfileId(Long id){
-        return mentorRepository.findById(id)
-                .orElseThrow(()-> new EntityNotFoundException("없는 멘토 입니다"));
-    }
 
 
     public MentorDto convertToDto(MentorProfile mentorProfile){
@@ -50,14 +49,14 @@ public class MentorServiceImpl implements MentorService {
 
     @Override
     public MentorDto infoMentorProfile(Long id) {
-        MentorProfile infoMentorProfile = existingMentorProfileId(id);
+        MentorProfile infoMentorProfile = entityFinder.existingProfileId(id);
         return convertToDto(infoMentorProfile);
 
     }
 
     @Override
     public MentorUpdateDto updateMentorProfile(Long id, MentorUpdateDto mentorUpdateDto) {
-        MentorProfile existingProfile = existingMentorProfileId(id);
+        MentorProfile existingProfile = entityFinder.existingProfileId(id);
         existingProfile.updateProfileFrom(mentorUpdateDto);
         MentorProfile save = mentorRepository.save(existingProfile);
         return updateConvertToDto(save);
