@@ -11,7 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -51,6 +53,13 @@ public class MentorLikeServiceImpl implements MentorLikeService {
 
         }
     }
+
+
+
+
+
+
+
 
     public long countLikes(Long mentorId){
         MentorProfile profileId = entityFinder.existingProfileId(mentorId);

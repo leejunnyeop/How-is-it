@@ -7,6 +7,9 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+import java.util.stream.Collector;
+
 @Getter
 @NoArgsConstructor
 public class MentorDto {
@@ -41,6 +44,7 @@ public class MentorDto {
                 .price(mentorDto.price)
                 .build();
     }
+
 
 
     public MentorDto(String title, String content, String thumbnail, String expertise, String price){

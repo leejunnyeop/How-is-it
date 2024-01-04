@@ -5,6 +5,7 @@ import com.example.howIsIt.mentos.domain.dto.MentorUpdateDto;
 import com.example.howIsIt.mentos.domain.entity.MentorProfile;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 
 
 public interface MentorService {
@@ -22,6 +23,8 @@ public interface MentorService {
     MentorUpdateDto updateMentorProfile(Long id, MentorUpdateDto mentorUpdateDto);
 
     void deleteMentorProfile(Long id);
+
+
 
 
 

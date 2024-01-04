@@ -3,13 +3,16 @@ package com.example.howIsIt.mentos.service;
 import com.example.howIsIt.base.utility.EntityFinder;
 import com.example.howIsIt.mentos.domain.dto.MentorDto;
 import com.example.howIsIt.mentos.domain.dto.MentorUpdateDto;
+import com.example.howIsIt.mentos.domain.entity.MentorLikes;
 import com.example.howIsIt.mentos.domain.entity.MentorProfile;
+import com.example.howIsIt.mentos.repository.MentorLikeRepository;
 import com.example.howIsIt.mentos.repository.MentorRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Transactional
 @Service
@@ -22,6 +25,10 @@ public class MentorServiceImpl implements MentorService {
      */
 
     private final MentorRepository mentorRepository;
+
+    private final MentorLikeRepository mentorLikeRepository;
+
+
     private final EntityFinder entityFinder;
 
 
@@ -67,4 +74,15 @@ public class MentorServiceImpl implements MentorService {
     public void  deleteMentorProfile(Long id) {
         mentorRepository.deleteById(id);
     }
+
+
+    public List<MentorDto> infoLikesList(Long memberId) {
+        List<MentorLikes> findMemberId = mentorLikeRepository.findByMemberId_Id(memberId);
+        return findMemberId.stream()
+                .map(mentorLikes -> convertToDto(mentorLikes.getMentorProfileId()))
+                .collect(Collectors.toList());
+    }
+
+
+
 }

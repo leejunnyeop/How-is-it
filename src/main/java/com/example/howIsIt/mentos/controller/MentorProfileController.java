@@ -2,8 +2,7 @@ package com.example.howIsIt.mentos.controller;
 
 import com.example.howIsIt.mentos.domain.dto.MentorDto;
 import com.example.howIsIt.mentos.domain.dto.MentorUpdateDto;
-import com.example.howIsIt.mentos.domain.entity.MentorProfile;
-import com.example.howIsIt.mentos.service.MentorService;
+import com.example.howIsIt.mentos.service.MentorLikeServiceImpl;
 import com.example.howIsIt.mentos.service.MentorServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -12,12 +11,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@Slf4j
 @RestController
 @RequestMapping("/mentor")
 @RequiredArgsConstructor
 public class MentorProfileController {
 
     private final MentorServiceImpl mentorService;
+
+    private final MentorLikeServiceImpl mentorLikeServiceimpl;
 
     @PostMapping("/create")
     public ResponseEntity<MentorDto> createProfile(@RequestBody @Valid MentorDto mentorDto){
@@ -42,6 +46,13 @@ public class MentorProfileController {
     public ResponseEntity<Void> deleteProfile(@PathVariable Long id){
         mentorService.deleteMentorProfile(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/find/heart")
+    public ResponseEntity<List<MentorDto>> findMentorProfile(@RequestParam Long memberId){
+        log.info("들어왓나? " + memberId);
+        List<MentorDto> likesList = mentorService.infoLikesList(memberId);
+        return ResponseEntity.ok(likesList);
     }
 
 
