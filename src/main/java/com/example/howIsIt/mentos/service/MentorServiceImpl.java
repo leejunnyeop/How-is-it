@@ -8,10 +8,13 @@ import com.example.howIsIt.mentos.domain.entity.MentorProfile;
 import com.example.howIsIt.mentos.repository.MentorLikeRepository;
 import com.example.howIsIt.mentos.repository.MentorRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -32,14 +35,13 @@ public class MentorServiceImpl implements MentorService {
     private final EntityFinder entityFinder;
 
 
-
-    public MentorDto convertToDto(MentorProfile mentorProfile){
+    public MentorDto convertToDto(MentorProfile mentorProfile) {
         return new MentorDto(mentorProfile.getTitle(),
                 mentorProfile.getContent(), mentorProfile.getThumbnail(),
                 mentorProfile.getExpertise(), mentorProfile.getPrice());
     }
 
-    public MentorUpdateDto updateConvertToDto(MentorProfile mentorProfile){
+    public MentorUpdateDto updateConvertToDto(MentorProfile mentorProfile) {
         return new MentorUpdateDto(mentorProfile.getTitle(),
                 mentorProfile.getContent(), mentorProfile.getThumbnail(),
                 mentorProfile.getExpertise(), mentorProfile.getPrice());
@@ -47,8 +49,8 @@ public class MentorServiceImpl implements MentorService {
 
     @Override
     public MentorDto createMentorProfile(MentorDto mentorDto) {
-       MentorProfile mentorProfileSave = mentorDto.mentorEntity(mentorDto);
-       MentorProfile mentorProfileCreateSave = mentorRepository.save(mentorProfileSave);
+        MentorProfile mentorProfileSave = mentorDto.mentorEntity(mentorDto);
+        MentorProfile mentorProfileCreateSave = mentorRepository.save(mentorProfileSave);
         return convertToDto(mentorProfileCreateSave);
 
 
@@ -71,7 +73,7 @@ public class MentorServiceImpl implements MentorService {
     }
 
     @Override
-    public void  deleteMentorProfile(Long id) {
+    public void deleteMentorProfile(Long id) {
         mentorRepository.deleteById(id);
     }
 
@@ -83,6 +85,20 @@ public class MentorServiceImpl implements MentorService {
                 .collect(Collectors.toList());
     }
 
+    public Page<MentorProfile> getMentorProfile(String sortType, int page, int size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
 
+        switch (sortType.toLowerCase()) {
+            case "likes":
+                return mentorRepository.findAllSortedByMentorLikesDesc(pageRequest);
+            case "review":
+                return mentorRepository.findAllOrderByReviewDesc(pageRequest);
+            case  "day":
+                return mentorRepository.findAllByOrderByCreateDateTimeDesc(pageRequest);
+            default:
+                return mentorRepository.findAll(pageRequest);
+
+        }
+}
 
 }

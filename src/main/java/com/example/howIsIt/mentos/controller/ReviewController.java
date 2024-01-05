@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/review")
+@RequestMapping("/mentor")
 @RequiredArgsConstructor
 public class ReviewController {
 
     private final ReviewService reviewService;
 
-    @PostMapping("/crate")
+    @PostMapping("/review")
     public ResponseEntity<ReviewDto> createReview(@RequestBody @Valid ReviewDto reviewDto){
         reviewService.createReview(reviewDto);
         return new ResponseEntity<>(HttpStatus.CREATED);

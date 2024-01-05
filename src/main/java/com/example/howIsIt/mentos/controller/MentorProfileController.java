@@ -2,11 +2,13 @@ package com.example.howIsIt.mentos.controller;
 
 import com.example.howIsIt.mentos.domain.dto.MentorDto;
 import com.example.howIsIt.mentos.domain.dto.MentorUpdateDto;
+import com.example.howIsIt.mentos.domain.entity.MentorProfile;
 import com.example.howIsIt.mentos.service.MentorLikeServiceImpl;
 import com.example.howIsIt.mentos.service.MentorServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -50,9 +52,18 @@ public class MentorProfileController {
 
     @GetMapping("/find/heart")
     public ResponseEntity<List<MentorDto>> findMentorProfile(@RequestParam Long memberId){
-        log.info("들어왓나? " + memberId);
         List<MentorDto> likesList = mentorService.infoLikesList(memberId);
         return ResponseEntity.ok(likesList);
+    }
+
+    @GetMapping("/main")
+    public ResponseEntity<Page<MentorProfile>> orderMentorProfile(
+            @RequestParam(defaultValue = "day") String sort,
+            @RequestParam(defaultValue =  "5") int page,
+            @RequestParam(defaultValue = "10") int size)
+    {
+        Page<MentorProfile> mentorProfilePage = mentorService.getMentorProfile(sort, page, size);
+        return ResponseEntity.ok(mentorProfilePage);
     }
 
 
