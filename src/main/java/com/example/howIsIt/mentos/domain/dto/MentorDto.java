@@ -1,11 +1,12 @@
 package com.example.howIsIt.mentos.domain.dto;
 
 import com.example.howIsIt.mentos.domain.entity.MentorProfile;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Getter
 @NoArgsConstructor

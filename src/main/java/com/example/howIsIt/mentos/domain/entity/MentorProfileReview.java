@@ -2,11 +2,12 @@ package com.example.howIsIt.mentos.domain.entity;
 
 import com.example.howIsIt.base.BaseTimeEntity;
 import com.example.howIsIt.domain.Member;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 
 @Builder

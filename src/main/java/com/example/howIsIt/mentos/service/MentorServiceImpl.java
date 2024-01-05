@@ -5,9 +5,7 @@ import com.example.howIsIt.mentos.domain.dto.MentorDto;
 import com.example.howIsIt.mentos.domain.dto.MentorUpdateDto;
 import com.example.howIsIt.mentos.domain.entity.MentorProfile;
 import com.example.howIsIt.mentos.repository.MentorRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

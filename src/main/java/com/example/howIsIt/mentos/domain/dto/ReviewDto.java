@@ -1,10 +1,11 @@
 package com.example.howIsIt.mentos.domain.dto;
 
 
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.Size;
 
 @Getter
 @AllArgsConstructor

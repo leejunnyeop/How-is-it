@@ -2,17 +2,16 @@ package com.example.howIsIt.mentos.controller;
 
 
 import com.example.howIsIt.mentos.domain.dto.MentorLikeDto;
-import com.example.howIsIt.mentos.service.MentorLikeService;
 import com.example.howIsIt.mentos.service.MentorLikeServiceImpl;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/mentor")

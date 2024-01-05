@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.1.5'
+	id 'org.springframework.boot' version '2.7.18'
 	id 'io.spring.dependency-management' version '1.1.3'
 }
 
@@ -10,7 +10,6 @@ version = '0.0.1-SNAPSHOT'
 java {
 	sourceCompatibility = '17'
 	targetCompatibility = '17'
-
 }
 
 configurations {
@@ -21,29 +20,23 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
 }
 
 dependencies {
-
 	implementation 'com.google.firebase:firebase-admin:8.0.1'
 
-
-	//전 처리 유효성 검사
+	// 전 처리 유효성 검사
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-	//스프링 부트 설정
-
+	// 스프링 부트 설정
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
-
 	compileOnly 'org.projectlombok:lombok'
 
-
-
 	// 데이터베이스
-	//implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 
@@ -51,14 +44,18 @@ dependencies {
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
 
-
-	//메일
+	// 메일
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 
+	// 명함인증 (적절한 Google Cloud Vision 종속성으로 대체)
+	// Google Cloud Vision API를 위한 Spring Cloud GCP Vision
+	implementation 'com.google.cloud:spring-cloud-gcp-vision'
+
+	// Spring Cloud GCP BOM (안정된 버전 사용)
+	implementation platform('com.google.cloud:spring-cloud-gcp-dependencies:2.0.4')
 
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.' +
-			'springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 }
 

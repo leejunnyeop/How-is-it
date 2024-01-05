@@ -3,14 +3,13 @@ package com.example.howIsIt.controller;
 import com.example.howIsIt.base.BaseResponse;
 import com.example.howIsIt.domain.CustomUser;
 import com.example.howIsIt.service.CustomUserService;
+import com.google.cloud.spring.vision.CloudVisionTemplate;
 import com.google.firebase.auth.FirebaseAuth;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/users")
@@ -22,6 +21,8 @@ public class UserController {
     FirebaseAuth firebaseAuth;
     @Autowired
     private CustomUserService customUserDetailsService;
+
+    @Autowired private CloudVisionTemplate cloudVisionTemplate;
 
     @PostMapping("") //구글 소셜 로그인
     public BaseResponse register (@RequestBody CustomUser customUser) {
@@ -38,6 +39,19 @@ public class UserController {
         customUserDetailsService.register(uid, email);
 
         return new BaseResponse(true, "요청에 성공하였습니다.", 2000);
+    }
+
+    @GetMapping("/card")
+    public String extractText(@RequestParam("file") MultipartFile file) {
+        // [START vision_spring_text_extraction]
+        String textFromImage = "";
+
+        if (file != null && !file.isEmpty()) {
+            textFromImage = this.cloudVisionTemplate.extractTextFromImage(file.getResource());
+        }
+
+        return "Text from image: " + textFromImage;
+        // [END vision_spring_text_extraction]
     }
 
 }

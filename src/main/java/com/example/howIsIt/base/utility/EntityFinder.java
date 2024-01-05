@@ -3,9 +3,7 @@ package com.example.howIsIt.base.utility;
 import com.example.howIsIt.domain.Member;
 import com.example.howIsIt.domain.MemberRepository;
 import com.example.howIsIt.mentos.domain.entity.MentorProfile;
-
 import com.example.howIsIt.mentos.repository.MentorRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

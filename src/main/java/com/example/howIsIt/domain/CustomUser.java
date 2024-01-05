@@ -1,8 +1,9 @@
 package com.example.howIsIt.domain;
 
-import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")

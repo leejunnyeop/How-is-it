@@ -1,6 +1,6 @@
 package com.example.howIsIt.util;
 
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 
 public class RequestUtil {
     public static String getAuthorizationToken(String header) {
