@@ -1,6 +1,6 @@
-FROM openjdk:corretto-17.0.9
+FROM amazoncorretto:17
 
-COPY pragmatic-bongo-410303-399920688d43.json /app/pragmatic-bongo-410303-399920688d43.json
+COPY ./src/main/pragmatic-bongo-410303-399920688d43.json /app/pragmatic-bongo-410303-399920688d43.json
 
 ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} app.jar
