@@ -1,7 +1,5 @@
 package com.example.howIsIt.domain;
 
-import com.example.howIsIt.mentos.domain.entity.MentorLikes;
-import com.example.howIsIt.mentos.domain.entity.MentorProfileReview;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

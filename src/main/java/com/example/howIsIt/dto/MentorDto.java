@@ -1,6 +1,6 @@
-package com.example.howIsIt.mentos.domain.dto;
+package com.example.howIsIt.dto;
 
-import com.example.howIsIt.mentos.domain.entity.MentorProfile;
+import com.example.howIsIt.domain.MentorProfile;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

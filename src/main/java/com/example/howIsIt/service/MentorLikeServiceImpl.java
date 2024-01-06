@@ -1,11 +1,11 @@
-package com.example.howIsIt.mentos.service;
+package com.example.howIsIt.service;
 
 import com.example.howIsIt.base.utility.EntityFinder;
 import com.example.howIsIt.domain.Member;
-import com.example.howIsIt.mentos.domain.dto.MentorLikeDto;
-import com.example.howIsIt.mentos.domain.entity.MentorLikes;
-import com.example.howIsIt.mentos.domain.entity.MentorProfile;
-import com.example.howIsIt.mentos.repository.MentorLikeRepository;
+import com.example.howIsIt.dto.MentorLikeDto;
+import com.example.howIsIt.domain.MentorLikes;
+import com.example.howIsIt.domain.MentorProfile;
+import com.example.howIsIt.repository.MentorLikeRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;

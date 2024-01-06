@@ -1,4 +1,4 @@
-package com.example.howIsIt.mentos.domain.dto;
+package com.example.howIsIt.dto;
 
 
 import lombok.AllArgsConstructor;

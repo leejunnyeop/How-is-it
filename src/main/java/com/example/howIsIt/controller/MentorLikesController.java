@@ -1,8 +1,8 @@
-package com.example.howIsIt.mentos.controller;
+package com.example.howIsIt.controller;
 
 
-import com.example.howIsIt.mentos.domain.dto.MentorLikeDto;
-import com.example.howIsIt.mentos.service.MentorLikeServiceImpl;
+import com.example.howIsIt.dto.MentorLikeDto;
+import com.example.howIsIt.service.MentorLikeServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

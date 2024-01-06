@@ -1,7 +1,7 @@
-package com.example.howIsIt.mentos.domain.entity;
+package com.example.howIsIt.domain;
 
 import com.example.howIsIt.base.BaseTimeEntity;
-import com.example.howIsIt.mentos.domain.dto.MentorUpdateDto;
+import com.example.howIsIt.dto.MentorUpdateDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

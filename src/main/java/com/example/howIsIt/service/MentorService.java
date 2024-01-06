@@ -1,10 +1,7 @@
-package com.example.howIsIt.mentos.service;
+package com.example.howIsIt.service;
 
-import com.example.howIsIt.mentos.domain.dto.MentorDto;
-import com.example.howIsIt.mentos.domain.dto.MentorUpdateDto;
-import com.example.howIsIt.mentos.domain.entity.MentorProfile;
-import org.springframework.stereotype.Component;
-
+import com.example.howIsIt.dto.MentorDto;
+import com.example.howIsIt.dto.MentorUpdateDto;
 
 
 public interface MentorService {

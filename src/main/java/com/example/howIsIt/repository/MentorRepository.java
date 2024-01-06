@@ -1,6 +1,6 @@
-package com.example.howIsIt.mentos.repository;
+package com.example.howIsIt.repository;
 
-import com.example.howIsIt.mentos.domain.entity.MentorProfile;
+import com.example.howIsIt.domain.MentorProfile;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

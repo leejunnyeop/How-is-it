@@ -1,6 +1,5 @@
-package com.example.howIsIt.mentos.domain.entity;
+package com.example.howIsIt.domain;
 
-import com.example.howIsIt.domain.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

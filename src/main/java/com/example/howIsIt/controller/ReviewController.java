@@ -1,7 +1,7 @@
-package com.example.howIsIt.mentos.controller;
+package com.example.howIsIt.controller;
 
-import com.example.howIsIt.mentos.domain.dto.ReviewDto;
-import com.example.howIsIt.mentos.service.ReviewService;
+import com.example.howIsIt.dto.ReviewDto;
+import com.example.howIsIt.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
