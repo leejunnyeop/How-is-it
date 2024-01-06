@@ -1,6 +1,6 @@
 package com.example.howIsIt.dto;
 
-import com.example.howIsIt.domain.MentorProfile;
+import com.example.howIsIt.domain.ProfileBoard;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 
 @Getter
 @NoArgsConstructor
-public class MentorDto {
+public class ProfileBoardDto {
 
 
     @NotNull(message = "제목은 필수 입니다.")
@@ -33,18 +33,18 @@ public class MentorDto {
 
 
 
-    public MentorProfile mentorEntity(MentorDto mentorDto){
-        return MentorProfile.builder()
-                .title(mentorDto.title)
-                .content(mentorDto.content)
-                .thumbnail(mentorDto.thumbnail)
-                .expertise(mentorDto.expertise)
-                .price(mentorDto.price)
+    public ProfileBoard mentorEntity(ProfileBoardDto profileBoardDto){
+        return ProfileBoard.builder()
+                .title(profileBoardDto.title)
+                .content(profileBoardDto.content)
+                .thumbnail(profileBoardDto.thumbnail)
+                .expertise(profileBoardDto.expertise)
+                .price(profileBoardDto.price)
                 .build();
     }
 
 
-    public MentorDto(String title, String content, String thumbnail, String expertise, String price){
+    public ProfileBoardDto(String title, String content, String thumbnail, String expertise, String price){
         this.title = title;
         this.content = content;
         this.thumbnail = thumbnail;

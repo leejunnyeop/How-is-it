@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class MentorLikeDto {
 
 
-    private Long mentorProfileId;
+    private Long profileBoardId;
 
 
     private Long usersId;

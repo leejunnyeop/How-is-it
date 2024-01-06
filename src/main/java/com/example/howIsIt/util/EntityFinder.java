@@ -1,7 +1,7 @@
 package com.example.howIsIt.util;
 
 import com.example.howIsIt.domain.CustomUser;
-import com.example.howIsIt.domain.MentorProfile;
+import com.example.howIsIt.domain.ProfileBoard;
 import com.example.howIsIt.repository.MentorRepository;
 import com.example.howIsIt.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +22,8 @@ public class EntityFinder {
         return getUsersId;
     }
 
-    public MentorProfile existingProfileId(Long reviewId){
-        MentorProfile profileId = mentorRepository.findById(reviewId)
+    public ProfileBoard existingProfileId(Long reviewId){
+        ProfileBoard profileId = mentorRepository.findById(reviewId)
                 .orElseThrow(() -> new IllegalArgumentException("없는 프로필 입니다."));
         return profileId;
     }

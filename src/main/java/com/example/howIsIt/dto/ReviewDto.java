@@ -16,7 +16,7 @@ public class ReviewDto {
     private String review;
 
 
-    private Long mentorProfileId;
+    private Long profileBoardId;
 
     private Long usersId;
 

@@ -8,8 +8,8 @@ import java.util.Optional;
 public interface MentorLikeRepository extends JpaRepository<MentorLikes, Long> {
 
 
-    Optional<MentorLikes> findByMentorProfileId_IdAndUsersId_Id(Long mentorProfileId, Long usersId);
+    Optional<MentorLikes> findByprofileBoardId_IdAndUsersId_Id(Long profileBoardId, Long usersId);
 
-    long countByMentorProfileId_Id(Long mentorId);
+    long countByprofileBoardId_Id(Long mentorId);
 
 }

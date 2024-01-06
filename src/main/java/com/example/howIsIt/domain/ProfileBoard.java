@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MentorProfile extends BaseTimeEntity {
+public class ProfileBoard extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,10 +37,10 @@ public class MentorProfile extends BaseTimeEntity {
     private String price;
 
 
-    @OneToMany(mappedBy = "mentorProfile", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<MentorProfileReview> mentorProfileReview;
+    @OneToMany(mappedBy = "profileBoard", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProfileBoardReview> profileBoardReview;
 
-    @OneToMany(mappedBy = "mentorProfileId", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "profileBoardId", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MentorLikes> mentorLikes;
 
 

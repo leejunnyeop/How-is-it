@@ -1,6 +1,5 @@
 package com.example.howIsIt.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -26,7 +25,7 @@ public class CustomUser {
     private String uid;
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<MentorProfileReview> mentorProfileReviews;
+    private List<ProfileBoardReview> ProfileBoardReviews;
 
     @OneToMany(mappedBy = "usersId", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MentorLikes> mentorLikes;
