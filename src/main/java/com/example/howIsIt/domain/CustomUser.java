@@ -2,6 +2,7 @@ package com.example.howIsIt.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 
 
@@ -11,6 +12,7 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "users")
+@Data
 public class CustomUser {
 
     @Id

@@ -29,7 +29,7 @@ public class ReviewServiceImpl implements ReviewService {
         CustomUser existingusers = entityFinder.existingusersId(reviewDto.getUsersId());
         MentorProfile existingProfile = entityFinder.existingProfileId(reviewDto.getMentorProfileId());
         // 중복 방지
-        if(reviewRepository.findReviewByMentorProfile_IdAndusers_Id(existingProfile.getId(),existingusers.getId()).isPresent()){
+        if(reviewRepository.findReviewByMentorProfile_IdAndUsers_Id(existingProfile.getId(),existingusers.getId()).isPresent()){
             throw new IllegalArgumentException("해당 프로필 게시판에 한개에 댓글만 달 수 있습니다");
         }
 
