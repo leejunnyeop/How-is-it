@@ -15,7 +15,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"mentorProfile_id", "member_id"})
+        @UniqueConstraint(columnNames = {"mentorProfile_id", "users_id"})
 })
 public class MentorProfileReview extends BaseTimeEntity {
 
@@ -29,8 +29,8 @@ public class MentorProfileReview extends BaseTimeEntity {
     private MentorProfile mentorProfile;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id", nullable = false)
-    private Member member;
+    @JoinColumn(name = "users_id", nullable = false)
+    private CustomUser users;
 
     @Column(length = 20)
     private String review;

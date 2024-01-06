@@ -1,6 +1,6 @@
 package com.example.howIsIt.service;
 
-import com.example.howIsIt.base.utility.EntityFinder;
+import com.example.howIsIt.util.EntityFinder;
 import com.example.howIsIt.dto.MentorDto;
 import com.example.howIsIt.dto.MentorUpdateDto;
 import com.example.howIsIt.domain.MentorProfile;

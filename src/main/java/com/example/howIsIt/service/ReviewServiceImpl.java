@@ -1,7 +1,8 @@
 package com.example.howIsIt.service;
 
-import com.example.howIsIt.base.utility.EntityFinder;
-import com.example.howIsIt.domain.Member;
+import com.example.howIsIt.util.EntityFinder;
+import com.example.howIsIt.domain.CustomUser;
+
 import com.example.howIsIt.dto.ReviewDto;
 import com.example.howIsIt.domain.MentorProfile;
 import com.example.howIsIt.domain.MentorProfileReview;
@@ -25,17 +26,17 @@ public class ReviewServiceImpl implements ReviewService {
     public void createReview(ReviewDto reviewDto) {
 
         // 회원 및 프로필 존재 여부 확인
-        Member existingMember = entityFinder.existingMemberId(reviewDto.getMemberId());
+        CustomUser existingusers = entityFinder.existingusersId(reviewDto.getUsersId());
         MentorProfile existingProfile = entityFinder.existingProfileId(reviewDto.getMentorProfileId());
         // 중복 방지
-        if(reviewRepository.findReviewByMentorProfile_IdAndMember_Id(existingProfile.getId(),existingMember.getId()).isPresent()){
+        if(reviewRepository.findReviewByMentorProfile_IdAndusers_Id(existingProfile.getId(),existingusers.getId()).isPresent()){
             throw new IllegalArgumentException("해당 프로필 게시판에 한개에 댓글만 달 수 있습니다");
         }
 
         // 저장 코드
         MentorProfileReview mentorProfileReviewEntity = MentorProfileReview.builder()
                 .mentorProfile(existingProfile)
-                .member(existingMember)
+                .users(existingusers)
                 .review(reviewDto.getReview())
                 .build();
 

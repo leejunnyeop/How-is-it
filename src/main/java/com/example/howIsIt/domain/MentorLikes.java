@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"member_id", "mentorProfile_id"})
+        @UniqueConstraint(columnNames = {"users_id", "mentorProfile_id"})
 })
 public class MentorLikes {
 
@@ -22,8 +22,8 @@ public class MentorLikes {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id", nullable = false)
-    private Member memberId;
+    @JoinColumn(name = "users_id", nullable = false)
+    private CustomUser usersId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mentorProfile_id", nullable = false)

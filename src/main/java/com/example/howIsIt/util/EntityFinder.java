@@ -1,9 +1,9 @@
-package com.example.howIsIt.base.utility;
+package com.example.howIsIt.util;
 
-import com.example.howIsIt.domain.Member;
-import com.example.howIsIt.domain.MemberRepository;
+import com.example.howIsIt.domain.CustomUser;
 import com.example.howIsIt.domain.MentorProfile;
 import com.example.howIsIt.repository.MentorRepository;
+import com.example.howIsIt.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,15 +11,15 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class EntityFinder {
 
-    private final MemberRepository memberRepository;
+    private final UserRepository usersRepository;
 
     private final MentorRepository mentorRepository;
 
 
-    public Member existingMemberId(Long memberId){
-        Member getMemberId = memberRepository.findById(memberId)
+    public CustomUser existingusersId(Long usersId){
+        CustomUser getUsersId = usersRepository.findById(usersId)
                 .orElseThrow(() -> new IllegalArgumentException("없는 회원 입니다"));
-        return getMemberId;
+        return getUsersId;
     }
 
     public MentorProfile existingProfileId(Long reviewId){

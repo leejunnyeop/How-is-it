@@ -1,7 +1,8 @@
 package com.example.howIsIt.service;
 
-import com.example.howIsIt.base.utility.EntityFinder;
-import com.example.howIsIt.domain.Member;
+import com.example.howIsIt.util.EntityFinder;
+import com.example.howIsIt.domain.CustomUser;
+
 import com.example.howIsIt.dto.MentorLikeDto;
 import com.example.howIsIt.domain.MentorLikes;
 import com.example.howIsIt.domain.MentorProfile;
@@ -28,13 +29,13 @@ public class MentorLikeServiceImpl implements MentorLikeService {
     public void toggleLikes(MentorLikeDto mentorLikeDto) {
 
         // 조회하기
-        Member memberId = entityFinder.existingMemberId(mentorLikeDto.getMemberId());
+        CustomUser usersId = entityFinder.existingusersId(mentorLikeDto.getUsersId());
         MentorProfile profileId = entityFinder.existingProfileId(mentorLikeDto.getMentorProfileId());
 
 
         // 중복확인
 
-        Optional<MentorLikes> existingMentorLikes  = mentorLikeRepository.findByMentorProfileId_IdAndMemberId_Id(profileId.getId(), memberId.getId());
+        Optional<MentorLikes> existingMentorLikes  = mentorLikeRepository.findByMentorProfileId_IdAndUsersId_Id(profileId.getId(), usersId.getId());
 
         if (existingMentorLikes.isPresent()){
             // 이미 좋아요를 눌렀으면 취소
@@ -42,7 +43,7 @@ public class MentorLikeServiceImpl implements MentorLikeService {
         }else {
             // 안 눌렀으면 추가
             MentorLikes saveEntityLikes = MentorLikes.builder()
-                    .memberId(memberId)
+                    .usersId(usersId)
                     .mentorProfileId(profileId)
                     .build();
 

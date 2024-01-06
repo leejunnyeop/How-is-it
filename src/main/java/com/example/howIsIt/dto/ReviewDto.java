@@ -18,7 +18,7 @@ public class ReviewDto {
 
     private Long mentorProfileId;
 
-    private Long memberId;
+    private Long usersId;
 
 
 

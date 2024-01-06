@@ -14,6 +14,6 @@ public class MentorLikeDto {
     private Long mentorProfileId;
 
 
-    private Long memberId;
+    private Long usersId;
 
 }
