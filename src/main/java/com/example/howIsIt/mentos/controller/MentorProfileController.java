@@ -1,5 +1,6 @@
 package com.example.howIsIt.mentos.controller;
 
+import com.example.howIsIt.base.ProfileBoardNotFoundException;
 import com.example.howIsIt.mentos.domain.dto.MentorDto;
 import com.example.howIsIt.mentos.domain.dto.MentorUpdateDto;
 import com.example.howIsIt.mentos.domain.entity.MentorProfile;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Slf4j
+
 @RestController
 @RequestMapping("/mentor")
 @RequiredArgsConstructor
@@ -34,6 +35,9 @@ public class MentorProfileController {
     @GetMapping("/info/{id}")
     public ResponseEntity<MentorDto> InfoMentorProfile(@PathVariable Long id){
         MentorDto infoMentorProfile = mentorService.infoMentorProfile(id);
+        if(infoMentorProfile == null){
+            throw new ProfileBoardNotFoundException("프로필 정보를 찾지 못하여 있습니다.");
+        }
         return new ResponseEntity<>(infoMentorProfile,HttpStatus.OK);
     }
 
