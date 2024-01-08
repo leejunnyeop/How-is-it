@@ -23,8 +23,9 @@ public class EmailController {
     @GetMapping("/receive") //인증코드확인
     public BaseResponse getMail(@RequestParam String verify) {
 
-        if(verify.equals(code))
+        if(verify.equals(code)) {
             return new BaseResponse(true, "요청에 성공하였습니다.", 2000);
+        }
         else
             return new BaseResponse(false, "권한이 없는 유저의 접근입니다.", 4000);
     }

@@ -17,8 +17,8 @@ public class CustomUserService {
     @Transactional
     public CustomUser register(String uid, String email) {
        CustomUser customUser = new CustomUser();
+       customUser.setUid(uid);
        customUser.setEmail(email);
-       customUser.setEmail(uid);
        userRepository.save(customUser);
        return customUser;
     }

@@ -9,8 +9,5 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<CustomUser, Long> {
 
-    // UserRepository의 메서드들
-
-
     Optional<CustomUser> findByUid(String uid);
 }
