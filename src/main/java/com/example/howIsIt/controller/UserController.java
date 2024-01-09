@@ -55,7 +55,8 @@ public class UserController {
     }
 
     @PostMapping("/card") //명함 인증
-    public BaseResponse extractText(@RequestPart MultipartFile file) throws Exception {
+    public BaseResponse extractText(@RequestHeader("Authorization") String authorization,
+                                    @RequestPart MultipartFile file) throws Exception {
 
         String content = "";
         content = cardService.detectDocumentText(file);
@@ -68,7 +69,8 @@ public class UserController {
     }
 
     @PostMapping("/mentor") //멘토 로그인
-    public BaseResponse registerMentor(@RequestBody MentorCreateDto mentorCreateDto) {
+    public BaseResponse registerMentor(@RequestHeader("Authorization") String authorization,
+                                           @RequestBody MentorCreateDto mentorCreateDto) {
 
 
     }

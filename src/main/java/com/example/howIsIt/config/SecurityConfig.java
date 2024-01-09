@@ -1,22 +1,18 @@
 package com.example.howIsIt.config;
 
-import com.example.howIsIt.filter.JwtFilter;
+import com.example.howIsIt.util.FirebaseUserDetails;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.HttpStatusEntryPoint;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
@@ -26,15 +22,34 @@ public class SecurityConfig {
     @Autowired
     private FirebaseAuth firebaseAuth;
 
+//    @Bean
+//    public UserDetailsService userDetailsService(DataSource dataSource) {
+//        JdbcUserDetailsManager manager = new JdbcUserDetailsManager(dataSource);
+//
+//        // 사용자 정보 조회 쿼리 설정
+//        manager.setUsersByUsernameQuery("select id from users where uid = ?");
+//        //manager.setAuthoritiesByUsernameQuery("SELECT uid, authority FROM authorities WHERE uid = ?");
+//
+//        return manager;
+//    }
+
     @Bean
-    public UserDetailsService userDetailsService(DataSource dataSource) {
-        JdbcUserDetailsManager manager = new JdbcUserDetailsManager(dataSource);
+    public UserDetailsService userDetailsService() {
+        return new UserDetailsService() {
+            @Override
+            public UserDetails loadUserByUsername(String uid) throws UsernameNotFoundException {
+                try {
+                    // Firebase를 사용하여 사용자 정보를 가져옴
+                    FirebaseToken decodedToken = firebaseAuth.verifyIdToken(uid);
+                    String username = decodedToken.getEmail(); // 이메일을 사용자 이름으로 사용
 
-        // 사용자 정보 조회 쿼리 설정
-        manager.setUsersByUsernameQuery("select id from users where uid = ?");
-        //manager.setAuthoritiesByUsernameQuery("SELECT uid, authority FROM authorities WHERE uid = ?");
-
-        return manager;
+                    // 사용자 권한 등의 추가 정보를 설정하거나, UserDetails를 구현한 클래스를 사용
+                    return new FirebaseUserDetails(username);
+                } catch (Exception e) {
+                    throw new UsernameNotFoundException("Firebase User Not Found", e);
+                }
+            }
+        };
     }
 
     @Bean

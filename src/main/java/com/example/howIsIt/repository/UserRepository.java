@@ -1,6 +1,7 @@
 package com.example.howIsIt.repository;
 
 import com.example.howIsIt.domain.Users;
+import com.example.howIsIt.dto.request.MentorCreateDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

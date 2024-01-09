@@ -24,7 +24,7 @@ public class CustomUserService {
        return users;
     }
 
-    @Transactional(readOnly = true) // 데이터 조회만 수행하므로 readOnly 옵션을 사용합니다.
+    @Transactional(readOnly = true)
     public Users getUserByUid(String uid) {
         return userRepository.findByUid(uid)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with uid: " + uid));
