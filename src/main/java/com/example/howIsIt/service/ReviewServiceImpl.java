@@ -1,7 +1,7 @@
 package com.example.howIsIt.service;
 
 import com.example.howIsIt.util.EntityFinder;
-import com.example.howIsIt.domain.CustomUser;
+import com.example.howIsIt.domain.Users;
 
 import com.example.howIsIt.dto.ReviewDto;
 import com.example.howIsIt.domain.ProfileBoard;
@@ -26,7 +26,7 @@ public class ReviewServiceImpl implements ReviewService {
     public void createReview(ReviewDto reviewDto) {
 
         // 회원 및 프로필 존재 여부 확인
-        CustomUser existingusers = entityFinder.existingusersId(reviewDto.getUsersId());
+        Users existingusers = entityFinder.existingusersId(reviewDto.getUsersId());
         ProfileBoard existingProfile = entityFinder.existingProfileId(reviewDto.getProfileBoardId());
         // 중복 방지
         if(reviewRepository.findReviewByprofileBoard_IdAndUsers_Id(existingProfile.getId(),existingusers.getId()).isPresent()){

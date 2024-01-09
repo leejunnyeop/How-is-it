@@ -1,6 +1,6 @@
 package com.example.howIsIt.util;
 
-import com.example.howIsIt.domain.CustomUser;
+import com.example.howIsIt.domain.Users;
 import com.example.howIsIt.domain.ProfileBoard;
 import com.example.howIsIt.repository.MentorRepository;
 import com.example.howIsIt.repository.UserRepository;
@@ -16,8 +16,8 @@ public class EntityFinder {
     private final MentorRepository mentorRepository;
 
 
-    public CustomUser existingusersId(Long usersId){
-        CustomUser getUsersId = usersRepository.findById(usersId)
+    public Users existingusersId(Long usersId){
+        Users getUsersId = usersRepository.findById(usersId)
                 .orElseThrow(() -> new IllegalArgumentException("없는 회원 입니다"));
         return getUsersId;
     }

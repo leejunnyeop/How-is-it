@@ -23,7 +23,7 @@ public class MentorLikes {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id", nullable = false)
-    private CustomUser usersId;
+    private Users usersId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profileBoard_id", nullable = false)

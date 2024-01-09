@@ -30,7 +30,7 @@ public class ProfileBoardReview extends BaseTimeEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id", nullable = false)
-    private CustomUser users;
+    private Users users;
 
     @Column(length = 20)
     private String review;

@@ -1,7 +1,7 @@
 package com.example.howIsIt.service;
 
 import com.example.howIsIt.util.EntityFinder;
-import com.example.howIsIt.domain.CustomUser;
+import com.example.howIsIt.domain.Users;
 
 import com.example.howIsIt.dto.MentorLikeDto;
 import com.example.howIsIt.domain.MentorLikes;
@@ -29,7 +29,7 @@ public class MentorLikeServiceImpl implements MentorLikeService {
     public void toggleLikes(MentorLikeDto mentorLikeDto) {
 
         // 조회하기
-        CustomUser usersId = entityFinder.existingusersId(mentorLikeDto.getUsersId());
+        Users usersId = entityFinder.existingusersId(mentorLikeDto.getUsersId());
         ProfileBoard profileId = entityFinder.existingProfileId(mentorLikeDto.getProfileBoardId());
 
 
