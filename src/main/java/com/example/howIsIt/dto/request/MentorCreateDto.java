@@ -14,5 +14,7 @@ public class MentorCreateDto {
     private int emailCheck;
     private int cardCheck;
     private String uid;
+    private String interest;
+
 
 }

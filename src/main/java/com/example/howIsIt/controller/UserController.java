@@ -1,6 +1,8 @@
 package com.example.howIsIt.controller;
 
 import com.example.howIsIt.base.BaseResponse;
+import com.example.howIsIt.domain.Interest;
+import com.example.howIsIt.domain.InterestCategory;
 import com.example.howIsIt.domain.Mentor;
 import com.example.howIsIt.domain.Users;
 import com.example.howIsIt.dto.request.MentorCreateDto;
@@ -84,7 +86,7 @@ public class UserController {
 
         if(!users.isEmpty()) {
 
-            Mentor mentor = new Mentor();
+            Mentor mentor = new Mentor(); //멘토로그인
 
             mentor.setUsersId(users.get().getId());
             mentor.setCardCheck(mentorCreateDto.getCardCheck());
@@ -92,6 +94,19 @@ public class UserController {
             mentor.setCreateDate(today);
 
             userService.MentorRegister(mentor);
+
+            Interest interest = new Interest(); //직업 선택
+
+            interest.setUid(uid);
+            interest.setCreateDate(today);
+            interest.setStatus(1);
+
+            if(!mentorCreateDto.getInterest().isBlank()) {
+                InterestCategory interestCategory = userService.getInterestCategory(mentorCreateDto.getInterest());
+                interest.setInterestCategoryId(interestCategory.getId());
+            }
+
+            userService.InterestCreate(interest);
 
             return new BaseResponse(true, "요청에 성공하였습니다", 2000);
         }
