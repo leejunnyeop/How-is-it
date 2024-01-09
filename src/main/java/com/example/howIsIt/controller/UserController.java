@@ -1,10 +1,7 @@
 package com.example.howIsIt.controller;
 
 import com.example.howIsIt.base.BaseResponse;
-import com.example.howIsIt.domain.Interest;
-import com.example.howIsIt.domain.InterestCategory;
-import com.example.howIsIt.domain.Mentor;
-import com.example.howIsIt.domain.Users;
+import com.example.howIsIt.domain.*;
 import com.example.howIsIt.dto.request.MentorCreateDto;
 import com.example.howIsIt.service.CardService;
 import com.example.howIsIt.service.CustomUserService;
@@ -99,7 +96,6 @@ public class UserController {
 
             interest.setUid(uid);
             interest.setCreateDate(today);
-            interest.setStatus(1);
 
             if(!mentorCreateDto.getInterest().isBlank()) {
                 InterestCategory interestCategory = userService.getInterestCategory(mentorCreateDto.getInterest());
@@ -107,6 +103,34 @@ public class UserController {
             }
 
             userService.InterestCreate(interest);
+
+            String business1 = mentorCreateDto.getBusiness1();
+            String business2 = mentorCreateDto.getBusiness2();
+            String business3 = mentorCreateDto.getBusiness3();
+
+            if(business1 != null && !business1.isBlank()) { //비즈니스 선택 (복수 선택)
+                Business business = userService.getBusiness(business1);
+                MentorBusiness mentorBusiness = new MentorBusiness();
+                mentorBusiness.setBusinessId(business.getId());
+                mentorBusiness.setCreateDate(today);
+                userService.MentorBusinessCreate(mentorBusiness);
+            }
+
+            if(business2 != null && !business2.isBlank()) { //비즈니스 선택 (복수 선택)
+                Business business = userService.getBusiness(business2);
+                MentorBusiness mentorBusiness = new MentorBusiness();
+                mentorBusiness.setBusinessId(business.getId());
+                mentorBusiness.setCreateDate(today);
+                userService.MentorBusinessCreate(mentorBusiness);
+            }
+
+            if(business3 != null && !business3.isBlank()) { //비즈니스 선택 (복수 선택)
+                Business business = userService.getBusiness(business3);
+                MentorBusiness mentorBusiness = new MentorBusiness();
+                mentorBusiness.setBusinessId(business.getId());
+                mentorBusiness.setCreateDate(today);
+                userService.MentorBusinessCreate(mentorBusiness);
+            }
 
             return new BaseResponse(true, "요청에 성공하였습니다", 2000);
         }

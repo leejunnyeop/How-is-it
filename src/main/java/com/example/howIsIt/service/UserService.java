@@ -1,14 +1,8 @@
 package com.example.howIsIt.service;
 
-import com.example.howIsIt.domain.Interest;
-import com.example.howIsIt.domain.InterestCategory;
-import com.example.howIsIt.domain.Mentor;
-import com.example.howIsIt.domain.Users;
+import com.example.howIsIt.domain.*;
 import com.example.howIsIt.dto.request.MentorCreateDto;
-import com.example.howIsIt.repository.InterestCategoryRepository;
-import com.example.howIsIt.repository.InterestRepository;
-import com.example.howIsIt.repository.MentorLoginRepository;
-import com.example.howIsIt.repository.UserRepository;
+import com.example.howIsIt.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +20,10 @@ public class UserService {
     InterestRepository interestRepository;
     @Autowired
     InterestCategoryRepository interestCategoryRepository;
+    @Autowired
+    BusinessRepository businessRepository;
+    @Autowired
+    MentorBusinessRepository mentorBusinessRepository;
 
     @Transactional //멘토 로그인
     public Mentor MentorRegister (Mentor mentor) {
@@ -45,4 +43,10 @@ public class UserService {
     public Optional<Users> getUser(String uid) {
         return userRepository.findByUid(uid);
     }
+
+    @Transactional
+    public Business getBusiness(String content) {return businessRepository.getBusinessByContent(content);}
+
+    @Transactional
+    public MentorBusiness MentorBusinessCreate(MentorBusiness mentorBusiness) { return mentorBusinessRepository.save(mentorBusiness);}
 }

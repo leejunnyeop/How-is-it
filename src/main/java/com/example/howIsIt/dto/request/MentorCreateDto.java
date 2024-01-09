@@ -15,6 +15,9 @@ public class MentorCreateDto {
     private int cardCheck;
     private String uid;
     private String interest;
+    private String business1;
+    private String business2;
+    private String business3;
 
 
 }
