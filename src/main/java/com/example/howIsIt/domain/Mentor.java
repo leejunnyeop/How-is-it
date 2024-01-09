@@ -22,9 +22,23 @@ public class Mentor {
     @Column(name="card_check", nullable = false)
     private int cardCheck;
 
-    @Column(name="user_id", nullable = false)
+    @Column(name="users_id", nullable = false)
     private long usersId;
 
     @Column(name="create_date", nullable = false)
     private Date createDate;
+
+    @Column(name="title")
+    private String title;
+    @Column(name="content")
+    private String content;
+    @Column(name="rank_count")
+    private double rankCount;
+    @Column(name="review_count")
+    private int reviewCount;
+    @Column(name="update_date")
+    private Date updateDate;
+    @Column(name="status")
+    private int status;
+
 }

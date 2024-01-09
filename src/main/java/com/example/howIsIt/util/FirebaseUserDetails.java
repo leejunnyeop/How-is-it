@@ -9,6 +9,7 @@ public class FirebaseUserDetails implements UserDetails {
 
     private final String username;
 
+
     // Constructor, Getters, and other methods
 
     public FirebaseUserDetails(String username) {

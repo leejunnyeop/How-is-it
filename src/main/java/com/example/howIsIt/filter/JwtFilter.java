@@ -45,26 +45,26 @@ public class JwtFilter extends OncePerRequestFilter {
 
         FirebaseToken decodedToken;
 
-        try{
-            String header = RequestUtil.getAuthorizationToken(request.getHeader("Authorization"));
-            decodedToken = firebaseAuth.verifyIdToken(header);
-        } catch (FirebaseAuthException | IllegalArgumentException e) {
-            // ErrorMessage 응답 전송
-            response.setStatus(HttpStatus.SC_UNAUTHORIZED);
-            response.setContentType("application/json");
-            response.getWriter().write("{\"code\":\"INVALID_TOKEN\", \"message\":\"" + e.getMessage() + "\"}");
-            return;
-        }
+//        try{
+//            String header = RequestUtil.getAuthorizationToken(request.getHeader("Authorization"));
+//            decodedToken = firebaseAuth.verifyIdToken(header);
+//        } catch (FirebaseAuthException | IllegalArgumentException e) {
+//            // ErrorMessage 응답 전송
+//            response.setStatus(HttpStatus.SC_UNAUTHORIZED);
+//            response.setContentType("application/json");
+//            response.getWriter().write("{\"code\":\"INVALID_TOKEN\", \"message\":\"" + e.getMessage() + "\"}");
+//            return;
+//        }
 
         try {
-
-            UserDetails user = userDetailsService.loadUserByUsername(decodedToken.getUid());
+            /*
+                프론트 연결 x : 주석, 프론트 연결 -> 주석해제
+             */
+            //UserDetails user = userDetailsService.loadUserByUsername(decodedToken.getUid());
+            UserDetails user = userDetailsService.loadUserByUsername("QgO2xpANhUS5zC4xEoxflsVpDM42");
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                     user, null, user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
-
-            // 세션에 사용자 정보 저장
-            //request.getSession().setAttribute("user", user);
 
         } catch (UsernameNotFoundException e) {
             // UsernameNotFoundException 처리

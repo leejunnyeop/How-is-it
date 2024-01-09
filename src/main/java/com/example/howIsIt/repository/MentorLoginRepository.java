@@ -7,5 +7,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MentorLoginRepository extends JpaRepository<Mentor, Long> {
 
-    void mentorRegister(MentorCreateDto mentorCreateDto);
 }

@@ -1,11 +1,13 @@
 package com.example.howIsIt.config;
 
+import com.example.howIsIt.filter.JwtFilter;
 import com.example.howIsIt.util.FirebaseUserDetails;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -13,6 +15,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -39,10 +44,7 @@ public class SecurityConfig {
             @Override
             public UserDetails loadUserByUsername(String uid) throws UsernameNotFoundException {
                 try {
-                    // Firebase를 사용하여 사용자 정보를 가져옴
-                    FirebaseToken decodedToken = firebaseAuth.verifyIdToken(uid);
-                    String username = decodedToken.getEmail(); // 이메일을 사용자 이름으로 사용
-
+                    String username = uid;
                     // 사용자 권한 등의 추가 정보를 설정하거나, UserDetails를 구현한 클래스를 사용
                     return new FirebaseUserDetails(username);
                 } catch (Exception e) {

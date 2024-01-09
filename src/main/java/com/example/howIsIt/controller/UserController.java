@@ -1,16 +1,20 @@
 package com.example.howIsIt.controller;
 
 import com.example.howIsIt.base.BaseResponse;
+import com.example.howIsIt.domain.Mentor;
 import com.example.howIsIt.domain.Users;
 import com.example.howIsIt.dto.request.MentorCreateDto;
 import com.example.howIsIt.service.CardService;
 import com.example.howIsIt.service.CustomUserService;
+import com.example.howIsIt.service.UserService;
+import com.example.howIsIt.util.FirebaseUserDetails;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +23,9 @@ import com.example.howIsIt.util.RequestUtil;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -30,6 +36,8 @@ public class UserController {
     FirebaseAuth firebaseAuth;
     @Autowired
     private CustomUserService customUserDetailsService;
+    @Autowired
+    private UserService userService;
 
     @Autowired private CardService cardService;
 
@@ -55,8 +63,7 @@ public class UserController {
     }
 
     @PostMapping("/card") //명함 인증
-    public BaseResponse extractText(@RequestHeader("Authorization") String authorization,
-                                    @RequestPart MultipartFile file) throws Exception {
+    public BaseResponse extractText(@RequestPart MultipartFile file) throws Exception {
 
         String content = "";
         content = cardService.detectDocumentText(file);
@@ -68,10 +75,27 @@ public class UserController {
             return new BaseResponse(false, "잘못된 형식입니다.", 4001);
     }
 
-    @PostMapping("/mentor") //멘토 로그인
-    public BaseResponse registerMentor(@RequestHeader("Authorization") String authorization,
-                                           @RequestBody MentorCreateDto mentorCreateDto) {
+    @PostMapping("/mentorLogin") //멘토 로그인
+    public BaseResponse registerMentor(@RequestBody MentorCreateDto mentorCreateDto) {
 
+        String uid = mentorCreateDto.getUid();
+        Optional<Users> users = userService.getUser(uid);
+        Date today = new Date();
 
+        if(!users.isEmpty()) {
+
+            Mentor mentor = new Mentor();
+
+            mentor.setUsersId(users.get().getId());
+            mentor.setCardCheck(mentorCreateDto.getCardCheck());
+            mentor.setEmailCheck(mentorCreateDto.getEmailCheck());
+            mentor.setCreateDate(today);
+
+            userService.MentorRegister(mentor);
+
+            return new BaseResponse(true, "요청에 성공하였습니다", 2000);
+        }
+
+        return new BaseResponse(false, "잘못된 형식입니다", 4001);
     }
 }
