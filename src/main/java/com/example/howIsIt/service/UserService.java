@@ -1,7 +1,6 @@
 package com.example.howIsIt.service;
 
 import com.example.howIsIt.domain.*;
-import com.example.howIsIt.dto.request.MentorCreateDto;
 import com.example.howIsIt.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +29,7 @@ public class UserService {
     MenteBusinessRepository menteBusinessRepository;
 
     @Transactional
-    public v
+    public void UserSignout(Optional<Users> user) {user.setStatus(2);}
     @Transactional
     public Mente MenteRegister (Mente mente) {return menteLoginRepository.save(mente);}
     @Transactional //멘토 로그인

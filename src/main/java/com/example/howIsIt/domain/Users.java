@@ -25,6 +25,9 @@ public class Users {
     @Column(nullable = false)
     private String uid;
 
+    @Column
+    private int status;
+
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProfileBoardReview> ProfileBoardReviews;
 

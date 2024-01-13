@@ -211,6 +211,19 @@ public class UserController {
         email = signoutDto.getEmail();
         uid = signoutDto.getUid();
 
+        Optional<Users> user = userService.getUser(uid);
 
+        if(!user.isEmpty()) {
+            if(email.equals(user.get().getEmail())) {
+                userService.UserSignout(user);
+                return new BaseResponse(true, "요청에 성공하였습니다", 2000);
+            }
+            else {
+                return new BaseResponse(false, "잘못된 이메일 입니다", 4001);
+            }
+        }
+        else {
+            return new BaseResponse(false, "잘못된 형식입니다", 4001);
+        }
     }
 }
