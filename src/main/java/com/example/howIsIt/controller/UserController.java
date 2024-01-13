@@ -4,6 +4,7 @@ import com.example.howIsIt.base.BaseResponse;
 import com.example.howIsIt.domain.*;
 import com.example.howIsIt.dto.request.MenteCreateDto;
 import com.example.howIsIt.dto.request.MentorCreateDto;
+import com.example.howIsIt.dto.request.SignoutDto;
 import com.example.howIsIt.service.CardService;
 import com.example.howIsIt.service.CustomUserService;
 import com.example.howIsIt.service.UserService;
@@ -199,5 +200,17 @@ public class UserController {
         }
 
         return new BaseResponse(false, "잘못된 형식입니다", 4001);
+    }
+
+    @PostMapping("/signout")
+    public BaseResponse UsersSignout(@RequestBody SignoutDto signoutDto) {
+
+        String email;
+        String uid;
+
+        email = signoutDto.getEmail();
+        uid = signoutDto.getUid();
+
+
     }
 }

@@ -30,6 +30,8 @@ public class UserService {
     MenteBusinessRepository menteBusinessRepository;
 
     @Transactional
+    public v
+    @Transactional
     public Mente MenteRegister (Mente mente) {return menteLoginRepository.save(mente);}
     @Transactional //멘토 로그인
     public Mentor MentorRegister (Mentor mentor) {
