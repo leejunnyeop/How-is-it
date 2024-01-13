@@ -24,7 +24,13 @@ public class UserService {
     BusinessRepository businessRepository;
     @Autowired
     MentorBusinessRepository mentorBusinessRepository;
+    @Autowired
+    MenteLoginRepository menteLoginRepository;
+    @Autowired
+    MenteBusinessRepository menteBusinessRepository;
 
+    @Transactional
+    public Mente MenteRegister (Mente mente) {return menteLoginRepository.save(mente);}
     @Transactional //멘토 로그인
     public Mentor MentorRegister (Mentor mentor) {
         return mentorLoginRepository.save(mentor);
@@ -47,6 +53,8 @@ public class UserService {
     @Transactional
     public Business getBusiness(String content) {return businessRepository.getBusinessByContent(content);}
 
+    @Transactional
+    public MenteBusiness MenteBusinessCreate(MenteBusiness menteBusiness) { return menteBusinessRepository.save(menteBusiness);}
     @Transactional
     public MentorBusiness MentorBusinessCreate(MentorBusiness mentorBusiness) { return mentorBusinessRepository.save(mentorBusiness);}
 }
