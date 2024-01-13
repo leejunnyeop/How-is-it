@@ -215,7 +215,7 @@ public class UserController {
 
         if(!user.isEmpty()) {
             if(email.equals(user.get().getEmail())) {
-                userService.UserSignout(user);
+                userService.UserSignout(user.get().getUid());
                 return new BaseResponse(true, "요청에 성공하였습니다", 2000);
             }
             else {

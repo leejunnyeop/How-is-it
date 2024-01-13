@@ -29,7 +29,7 @@ public class UserService {
     MenteBusinessRepository menteBusinessRepository;
 
     @Transactional
-    public void UserSignout(Optional<Users> user) {user.setStatus(2);}
+    public void UserSignout(String uid) {userRepository.deleteUsersByUid(uid);}
     @Transactional
     public Mente MenteRegister (Mente mente) {return menteLoginRepository.save(mente);}
     @Transactional //멘토 로그인
