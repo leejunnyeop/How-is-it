@@ -56,30 +56,26 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, UserDetailsService userDetailsService) throws Exception {
-//        http
-//                // CSRF 설정을 비활성화합니다.
-//                .csrf(csrf -> csrf.disable())
-//                // 요청에 대한 권한을 설정합니다.
-//                .authorizeRequests(authorize -> authorize
-//                        .requestMatchers(new AntPathRequestMatcher("/users", "POST")).permitAll()
-//                        .requestMatchers(new AntPathRequestMatcher("/resources/**")).permitAll()
-//                        // 그 외의 모든 요청은 인증이 필요합니다.
-//                        .anyRequest().authenticated()
-//                )
-//                // 예외 처리를 구성합니다.
-//                .exceptionHandling(exception -> exception
-//                        // 인증되지 않은 요청에 대해 401 오류를 반환합니다.
-//                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
-//                )
-//                // JwtFilter를 SecurityFilterChain에 추가합니다.
-//                .addFilterBefore(new JwtFilter(userDetailsService, firebaseAuth), UsernamePasswordAuthenticationFilter.class);
 
+//        http
+//                .authorizeRequests()
+//                .anyRequest().permitAll()
+//                // 나머지 보안 설정
+//                .and()
+//                .csrf(csrf -> csrf.disable());
         http
+                // 요청에 대한 권한을 설정합니다.
                 .authorizeRequests()
-                .anyRequest().permitAll()
-                // 나머지 보안 설정
+                .antMatchers("/users/**").permitAll() // '/users/**' 경로는 모두 허용
+                .anyRequest().authenticated()
                 .and()
-                .csrf(csrf -> csrf.disable());
+                // 예외 처리를 구성합니다.
+                .exceptionHandling()
+                .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+                .and()
+                // JwtFilter를 SecurityFilterChain에 추가합니다.
+                .addFilterBefore(new JwtFilter(userDetailsService, firebaseAuth), UsernamePasswordAuthenticationFilter.class)
+                .csrf().disable(); // CSRF 보호를 비활성화
         return http.build();
     }
 }
