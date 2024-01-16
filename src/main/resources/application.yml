@@ -1,14 +1,15 @@
 spring:
+  config:
+    import: 'optional:file:/run/secrets/application_secret_new'
   datasource:
     url: jdbc:mysql://portfolier.crofsnhlhw25.us-east-1.rds.amazonaws.com:3306/howisit
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    hibernate:
-      ddl-auto: none
-      dialect: org.hibernate.dialect.MySQL8Dialect
-    show-sql: true
-  config:
-    import: 'optional:file:/run/secrets/application_secret_new'
+    properties:
+      hibernate:
+        ddl-auto: none
+        dialect: org.hibernate.dialect.MySQL8Dialect
+      show-sql: true
   mail:
     host: smtp.gmail.com
     port: 587

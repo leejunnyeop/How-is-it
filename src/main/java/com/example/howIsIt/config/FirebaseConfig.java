@@ -14,14 +14,16 @@ import java.io.IOException;
 public class FirebaseConfig {
     @Bean
     public FirebaseAuth firebaseAuth() throws IOException {
+        String firebaseKeyPath = "/run/secrets/service_account_key2";
         GoogleCredentials credentials = GoogleCredentials
-                .fromStream(new FileInputStream("portfolier-itstime-firebase-adminsdk-ojcc7-0872e42441.json"));
+                .fromStream(new FileInputStream(firebaseKeyPath));
         FirebaseOptions options = FirebaseOptions.builder()
                 .setCredentials(credentials)
                 .build();
-        if (FirebaseApp.getApps().isEmpty()) { // <== FirebaseApp이 이미 초기화되었는지 확인
+        if (FirebaseApp.getApps().isEmpty()) {
             FirebaseApp.initializeApp(options);
         }
         return FirebaseAuth.getInstance();
     }
+
 }
