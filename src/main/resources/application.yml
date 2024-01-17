@@ -1,6 +1,7 @@
 spring:
   config:
-    import: 'optional:file:/run/secrets/application_secret_new'
+    import:
+      file: /run/secrets/application_secret_new1
   datasource:
     url: jdbc:mysql://portfolier.crofsnhlhw25.us-east-1.rds.amazonaws.com:3306/howisit
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -19,3 +20,10 @@ spring:
           auth: true
           starttls:
             enable: true
+logging:
+  level:
+    org:
+      springframework:
+        mail: DEBUG
+
+
