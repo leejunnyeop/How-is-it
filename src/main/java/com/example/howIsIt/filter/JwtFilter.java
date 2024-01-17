@@ -35,15 +35,15 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        String requestURI = request.getRequestURI();
-
-        // '/users' 경로의 POST 요청은 인증을 건너뛴다.
-        if (requestURI.equals("/users") && request.getMethod().equals("POST")) {
-            filterChain.doFilter(request, response);
-            return;
-        }
-
-        FirebaseToken decodedToken;
+//        String requestURI = request.getRequestURI();
+//
+//        // '/users' 경로의 POST 요청은 인증을 건너뛴다.
+//        if (requestURI.equals("/users") && request.getMethod().equals("POST")) {
+//            filterChain.doFilter(request, response);
+//            return;
+//        }
+//
+//        FirebaseToken decodedToken;
 
 //        try{
 //            String header = RequestUtil.getAuthorizationToken(request.getHeader("Authorization"));
@@ -56,29 +56,29 @@ public class JwtFilter extends OncePerRequestFilter {
 //            return;
 //        }
 
-        try {
-            /*
-                프론트 연결 x : 주석, 프론트 연결 -> 주석해제
-             */
-            //UserDetails user = userDetailsService.loadUserByUsername(decodedToken.getUid());
-            UserDetails user = userDetailsService.loadUserByUsername("QgO2xpANhUS5zC4xEoxflsVpDM42");
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                    user, null, user.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        } catch (UsernameNotFoundException e) {
-            // UsernameNotFoundException 처리
-            response.setStatus(HttpStatus.SC_UNAUTHORIZED);
-            response.setContentType("application/json");
-            response.getWriter().write("{\"code\":\"USER_NOT_FOUND\"}");
-            return;
-        } catch (NoSuchElementException e) {
-            // NoSuchElementException 처리
-            response.setStatus(HttpStatus.SC_UNAUTHORIZED);
-            response.setContentType("application/json");
-            response.getWriter().write("{\"code\":\"USER_NOT_FOUND\"}");
-            return;
-        }
+//        try {
+//            /*
+//                프론트 연결 x : 주석, 프론트 연결 -> 주석해제
+//             */
+//            //UserDetails user = userDetailsService.loadUserByUsername(decodedToken.getUid());
+//            UserDetails user = userDetailsService.loadUserByUsername("QgO2xpANhUS5zC4xEoxflsVpDM42");
+//            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+//                    user, null, user.getAuthorities());
+//            SecurityContextHolder.getContext().setAuthentication(authentication);
+//
+//        } catch (UsernameNotFoundException e) {
+//            // UsernameNotFoundException 처리
+//            response.setStatus(HttpStatus.SC_UNAUTHORIZED);
+//            response.setContentType("application/json");
+//            response.getWriter().write("{\"code\":\"USER_NOT_FOUND\"}");
+//            return;
+//        } catch (NoSuchElementException e) {
+//            // NoSuchElementException 처리
+//            response.setStatus(HttpStatus.SC_UNAUTHORIZED);
+//            response.setContentType("application/json");
+//            response.getWriter().write("{\"code\":\"USER_NOT_FOUND\"}");
+//            return;
+//        }
         filterChain.doFilter(request, response);
 
     }

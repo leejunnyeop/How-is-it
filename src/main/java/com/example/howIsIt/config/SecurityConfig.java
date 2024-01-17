@@ -57,25 +57,25 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, UserDetailsService userDetailsService) throws Exception {
 
-//        http
-//                .authorizeRequests()
-//                .anyRequest().permitAll()
-//                // 나머지 보안 설정
-//                .and()
-//                .csrf(csrf -> csrf.disable());
         http
-                // 요청에 대한 권한을 설정합니다.
                 .authorizeRequests()
-                .antMatchers("/users/**").permitAll() // '/users/**' 경로는 모두 허용
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
+                // 나머지 보안 설정
                 .and()
-                // 예외 처리를 구성합니다.
-                .exceptionHandling()
-                .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
-                .and()
-                // JwtFilter를 SecurityFilterChain에 추가합니다.
-                .addFilterBefore(new JwtFilter(userDetailsService, firebaseAuth), UsernamePasswordAuthenticationFilter.class)
-                .csrf().disable(); // CSRF 보호를 비활성화
+                .csrf(csrf -> csrf.disable());
+//        http
+//                // 요청에 대한 권한을 설정합니다.
+//                .authorizeRequests()
+//                .antMatchers("/users/**").permitAll() // '/users/**' 경로는 모두 허용
+//                .anyRequest().authenticated()
+//                .and()
+//                // 예외 처리를 구성합니다.
+//                .exceptionHandling()
+//                .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+//                .and()
+//                // JwtFilter를 SecurityFilterChain에 추가합니다.
+//                .addFilterBefore(new JwtFilter(userDetailsService, firebaseAuth), UsernamePasswordAuthenticationFilter.class)
+//                .csrf().disable(); // CSRF 보호를 비활성화
         return http.build();
     }
 }

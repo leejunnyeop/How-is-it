@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "677232947234",
+    "project_id": "portfolier-itstime",
+    "storage_bucket": "portfolier-itstime.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:677232947234:android:fc8f8935a41302aff21a7b",
+        "android_client_info": {
+          "package_name": "com.portfolier.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "677232947234-951kp9gns6apeji7h1plv0ku1lmvnuct.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.portfolier.app",
+            "certificate_hash": "2f477727fe5596d6eda106f8dfedcae2cb4d0cf1"
+          }
+        },
+        {
+          "client_id": "677232947234-gd8nlke9vlvqu7il7q3ecb50hscb6op6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.portfolier.app",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "677232947234-05459m0tgq7q6v88cg04c9iuqkmsgneh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqPkqalnngEKHHg1wPWMhYf-oOZhoVNiU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "677232947234-05459m0tgq7q6v88cg04c9iuqkmsgneh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "677232947234-boaq8aahmqi6d1ggiplubmcjmit96qt0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.portfolier.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
