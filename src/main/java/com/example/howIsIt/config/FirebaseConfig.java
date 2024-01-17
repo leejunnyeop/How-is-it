@@ -18,7 +18,7 @@ public class FirebaseConfig {
     public FirebaseAuth firebaseAuth() throws IOException {
         logger.toString();
         try {
-            String firebaseKeyPath = "/run/secrets/service_account_key3";
+            String firebaseKeyPath = "/run/secrets/service_account_key5";
             GoogleCredentials credentials = GoogleCredentials
                     .fromStream(new FileInputStream(firebaseKeyPath));
             FirebaseOptions options = FirebaseOptions.builder()
